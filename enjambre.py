@@ -1,30 +1,35 @@
-#!/usr/bin/pyton3
-import funcionesPSO
-import particula
-import math
-import numpy as np
+#!/usr/bin/python3
+import funcionesPSO as f
+import particula as p
 
 enjambre = []
 #Datos PSO
-gBest = Particula(6)
+gBest = p.gBest(6)
+gBest.llenarCeros()
 masa = 1
 collab = 2
 cognitive = 2
-maxIter = 1
+maxIter = 5
+popSize = 5
 #Datos Mochila
 longitud = 6
 maxPeso = 8
 valores = [2,5,6,10,13,16]
 pesos = [1,2,4,5,7,8]
 for i in range(popSize):
-    print(i)
-    enjambre.append(Particula())
+    enjambre.append(p.Particula(longitud))
     enjambre[i].llenarCeros()
     enjambre[i].posInicial()
-iter = 0
-while iter < maxIter:
+iteracion = 0
+while iteracion < maxIter:
     for particula in range(popSize): #se recorre cada particula
-        for dim in range(longitud): #se recorre cada dimension de la particula
-            while(enjambre[particula].factibilidad != 1):
-                enjambre[particula].posInicial()
-            enjambre[particula].vel[dim]
+        while True: #loopeamos hasta que se logre factibilidad
+            enjambre[particula].actualizarVelocidad(gBest) 
+            enjambre[particula].actualizarPos()
+            if (enjambre[particula].factibilidad() == 1):
+                break
+        enjambre[particula].mejorpBest()
+        if(enjambre[particula].valor() > gBest.valor()):
+            enjambre[particula].copyTogBest(gBest)
+    print(gBest.pos)
+    iteracion = iteracion + 1
