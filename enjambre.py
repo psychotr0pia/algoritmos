@@ -4,18 +4,16 @@ import particula as p
 
 enjambre = []
 #Datos PSO
-gBest = p.gBest(6)
+gBest = p.gBest(7)
 gBest.llenarCeros()
-masa = 1
-collab = 2
-cognitive = 2
+masa = 0.9
+collab = 0.6
+cognitive = 0.6
 maxIter = 5
 popSize = 5
 #Datos Mochila
-longitud = 6
-maxPeso = 8
-valores = [2,5,6,10,13,16]
-pesos = [1,2,4,5,7,8]
+longitud = 7
+maxPeso = 15
 for i in range(popSize):
     enjambre.append(p.Particula(longitud))
     enjambre[i].llenarCeros()
@@ -31,5 +29,5 @@ while iteracion < maxIter:
         enjambre[particula].mejorpBest()
         if(enjambre[particula].valor() > gBest.valor()):
             enjambre[particula].copyTogBest(gBest)
-    print(gBest.pos)
     iteracion = iteracion + 1
+print(gBest.pBest)

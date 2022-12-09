@@ -6,8 +6,8 @@ collab = 2
 cognitive = 2
 maxIter = 1
 popSize = 2
-valores = [2,5,6,10,13,16]
-pesos = [1,2,4,5,7,8]
+valores = [1.5, 2, 3, 1.5, 3, 3, 2]
+pesos = [3, 2.5, 3, 2.7, 3, 2.5, 2.6]
 
 def velocidad(velActual, mejorPos, posActual, gBest):
     return(masa*velActual + collab*rnd.random()*(gBest - velActual) + cognitive*rnd.random()*(mejorPos - posActual))
@@ -23,13 +23,13 @@ def posicion(sigmoide):
         return 0
 def funcionObjetivo(posicion):
     valor = 0
-    for i in posicion:
+    for i in range(len(posicion)):
        valor = valor + posicion[i]*valores[i]
     return valor
 
 def pesoTotal(posicion):
+
     peso = 0
-    for i in posicion:
+    for i in range(len(posicion)):
         peso = peso + posicion[i]*pesos[i]
     return peso
-

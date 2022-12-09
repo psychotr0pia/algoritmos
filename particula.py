@@ -1,6 +1,6 @@
 import funcionesPSO as f
 import random as rnd
-maxPeso = 8
+maxPeso = 15
 class gBest:
     def __init__(self, lenVector):
         self.pos = []
@@ -34,7 +34,7 @@ class Particula:
         for i in range(self.lenVector):
             self.pBest[i] = self.pos[i]
     def factibilidad(self):
-        if(f.pesoTotal(self.pos) > 8):
+        if(f.pesoTotal(self.pos) > maxPeso):
             return 0
         else:
             return 1
